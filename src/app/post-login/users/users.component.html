@@ -1,0 +1,37 @@
+<div class="home-container">
+    <app-navbar></app-navbar>
+
+    <div class="container-body">
+        <div class="headings">
+            <h2>Employee</h2>
+            <button class="button-class" (click)="addUser()">Add User</button>
+        </div>
+        <div class="toggle-tab-one toggle-tab-two">
+            <div class="tab tab-left">Employee Details </div>
+        </div>
+        <table>
+            <tr>
+                <th>Emp.Id</th>
+                <th>Name</th>
+                <th>Gender</th>
+                <th>Mobile No.</th>
+                <th>Email</th>
+                <th>Salary</th>
+                <th>Action</th>
+            </tr>
+            <tr *ngFor="let item of userResponse$ | async; let i = index">
+                <td>{{ item.id }}</td>
+                <td>{{ item.first_name | titlecase }} {{ item.last_name | titlecase }}</td>
+                <td>{{ item?.gender }}</td>
+                <td>{{ item?.mobile }}</td>
+                <td>{{ item?.email }}</td>
+                <td>{{ item?.salary | currency: '₹ ' }}</td>
+                <td class="action-button">
+                    <button class="button-class edit-button" (click)="editUser(i)">Edit</button>
+                    <button class="button-class" (click)="deleteUser(item)">Delete</button>
+                </td>
+            </tr>
+        </table>
+
+    </div>
+</div>
